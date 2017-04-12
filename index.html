@@ -48,9 +48,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -118,11 +118,19 @@
 </ul>
 <h3 id="1-1-3-React实例"><a href="#1-1-3-React实例" class="headerlink" title="1.1.3 React实例"></a><strong>1.1.3 React实例</strong></h3><h4 id="一个简单的Hello-World例子"><a href="#一个简单的Hello-World例子" class="headerlink" title="一个简单的Hello World例子"></a><strong>一个简单的Hello World例子</strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">	&lt;head&gt;</div><div class="line">		&lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">	    &lt;script src=&quot;../build/react.js&quot;&gt;&lt;/script&gt;</div><div class="line">	    &lt;script src=&quot;../build/react-dom.js&quot;&gt;&lt;/script&gt;</div><div class="line">	    &lt;script src=&quot;../build/browser.min.js&quot;&gt;&lt;/script&gt;</div><div class="line">	&lt;/head&gt;</div><div class="line">	&lt;body&gt;</div><div class="line">	    &lt;div id=&quot;example&quot;&gt;&lt;/div&gt;</div><div class="line">	    &lt;script type=&quot;text/babel&quot;&gt;</div><div class="line">		    ReactDOM.render(</div><div class="line">		        &lt;h1&gt;Hello, World!&lt;/h1&gt;,</div><div class="line">		        document.getElementById(&apos;example&apos;)</div><div class="line">		    );</div><div class="line">	    &lt;/script&gt;</div><div class="line">	&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
 <h4 id="将上述代码改成组件的形式："><a href="#将上述代码改成组件的形式：" class="headerlink" title="将上述代码改成组件的形式："></a><strong>将上述代码改成组件的形式</strong>：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;body&gt;</div><div class="line">   &lt;div id=&quot;example&quot;&gt;&lt;/div&gt;</div><div class="line">   &lt;script type=&quot;text/babel&quot;&gt;</div><div class="line">       var Hello = React.createClass(&#123;</div><div class="line">        render: function() &#123;</div><div class="line">            return &lt;div&gt;Hello &#123;this.props.name&#125;&lt;/div&gt;;</div><div class="line">           &#125;</div><div class="line">       &#125;);</div><div class="line">       ReactDOM.render(</div><div class="line">        &lt;Hello name=&quot;World&quot; /&gt;,</div><div class="line">           document.getElementById(&apos;example&apos;)</div><div class="line">       );</div><div class="line">   &lt;/script&gt;</div><div class="line"> &lt;/body&gt;</div></pre></td></tr></table></figure>
-<h4 id="详细的见react-demo目录中的demo1。"><a href="#详细的见react-demo目录中的demo1。" class="headerlink" title="详细的见react-demo目录中的demo1。"></a>详细的见<a href="https://github.com/AliceMaYaYa/react-demo" target="_blank" rel="external"><font color="#27ae60">react-demo</font></a>目录中的demo1。</h4>
+<h4 id="详细的见react-demo目录中的demo1。"><a href="#详细的见react-demo目录中的demo1。" class="headerlink" title="详细的见react-demo目录中的demo1。"></a>详细的见<a href="https://github.com/AliceMaYaYa/react-demo" target="_blank" rel="external"><font color="#27ae60">react-demo</font></a>目录中的demo1。</h4><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/12/react-learn/" data-id="cj1epdxqz0000bqwmqdy9x44k" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/04/12/react-learn/" data-id="cj1epfnj80001cawm7ax0e0mp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
@@ -169,7 +177,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/12/hello-world/" data-id="cj1epdxr30001bqwmeeti3vjz" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/04/12/hello-world/" data-id="cj1epfnj30000cawmphb83ql7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -189,7 +197,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Mot-clés</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">react</a></li></ul>
     </div>
@@ -199,7 +207,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
       <a href="/tags/react/" style="font-size: 10px;">react</a>
     </div>
@@ -218,7 +226,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -243,7 +251,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 John Doe<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

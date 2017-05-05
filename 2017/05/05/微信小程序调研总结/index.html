@@ -1,0 +1,745 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="前端,小程序," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="去年九月份微信小程序处于内测阶段，那时还是名在校学生，正好自己暑期实习接触到嵌套在微信端的WebApp，好奇的研究一下微信小程序和WebApp及APP的不同，和实验室小伙伴也讨论过，正好现在工作的部门让调研微信小程序，那就直接上干货。">
+<meta name="keywords" content="前端,小程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序调研总结">
+<meta property="og:url" content="http://www.fed123.com/2017/05/05/微信小程序调研总结/index.html">
+<meta property="og:site_name" content="云夕的博客">
+<meta property="og:description" content="去年九月份微信小程序处于内测阶段，那时还是名在校学生，正好自己暑期实习接触到嵌套在微信端的WebApp，好奇的研究一下微信小程序和WebApp及APP的不同，和实验室小伙伴也讨论过，正好现在工作的部门让调研微信小程序，那就直接上干货。">
+<meta property="og:image" content="http://www.fed123.com/images/WeChat.png">
+<meta property="og:image" content="http://www.fed123.com/images/111.png">
+<meta property="og:image" content="http://www.fed123.com/images/config.png">
+<meta property="og:image" content="http://www.fed123.com/images/struct.png">
+<meta property="og:image" content="http://www.fed123.com/images/hello.png">
+<meta property="og:image" content="http://www.fed123.com/images/api.png">
+<meta property="og:image" content="http://www.fed123.com/images/cal.png">
+<meta property="og:updated_time" content="2017-05-05T10:35:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信小程序调研总结">
+<meta name="twitter:description" content="去年九月份微信小程序处于内测阶段，那时还是名在校学生，正好自己暑期实习接触到嵌套在微信端的WebApp，好奇的研究一下微信小程序和WebApp及APP的不同，和实验室小伙伴也讨论过，正好现在工作的部门让调研微信小程序，那就直接上干货。">
+<meta name="twitter:image" content="http://www.fed123.com/images/WeChat.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.fed123.com/2017/05/05/微信小程序调研总结/"/>
+
+
+
+
+
+  <title> 微信小程序调研总结 | 云夕的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">云夕的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">走在前端的路上</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.fed123.com/2017/05/05/微信小程序调研总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AliceMaYaYa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="云夕的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                微信小程序调研总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-05T09:10:10+08:00">
+                2017-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <center><img src="/images/WeChat.png" width="300"></center><br>去年九月份微信小程序处于内测阶段，那时还是名在校学生，正好自己暑期实习接触到嵌套在微信端的WebApp，好奇的研究一下微信小程序和WebApp及APP的不同，和实验室小伙伴也讨论过，正好现在工作的部门让调研微信小程序，那就直接上干货。<br><br><a id="more"></a><br><br>## 微信小程序是什么<br><br>### 文字层面上的小程序：<br><br>张小龙说:“小程序是一种不需要下载安装即可使用的应用，它实现了应用“触手可及”的梦想，用户扫一扫或者搜一下即可打开应用。也体现了“用完即走”的理念，用户不用关心是否安装太多应用的问题。应用将无处不在，随时可用，但又无需安装卸载。”<br><br>由于小程序是在微信内部使用，无疑可以统一Android、IOS、WP三大平台，实现了一套程序，在多处运行，相当于微信成为了一个系统架构，避开了原始的微信搭载环境。<br><br>### 技术层面上的小程序：<br><br>微信小程序 = XML + CSS + JS 的移动应用程序<br><br>微信小程序的开发技术上是使用一种类似 React Native 的框架来保证程序的原生性和稳定性。<br><br>## 小程序与原生APP，H5 webapp的区别？<br><br>### 小程序与原生APP之间的区别：<br><br>- 功能实现：小程序：限于微信平台提供的功能;   App：可实现完整功能 ;<br>- 下载安装：小程序：通过微信(扫描二维码、搜索、分享)即可获得;   App：从应用商店(App Store、应用汇等)下载安装;<br>- 开发周期：小程序：平均开发周期约2周; App：一款完善的双平台App平均的开发周期约2个月;<br>- 内存占用：小程序：无需安装，和微信共用内存使用，占用内存空间忽略不计;   App：安装于手机内存，一直占用内存空间，太多的 App 可能会导致内存不足;<br>- 手机适配：小程序：一次开发，多终端适配;   App：需适配各种主流手机，开发成本大;<br>- 产品发布：小程序：提交到微信公众平台审核，云推送;   App：向十几个应用商店提交审核，且各应用商店所需资料不一样，非常繁琐;<br>- 推广难度：小程序：通过二维码、微信搜索、朋友分享等方式直接获得;   App：需要用户主动下载十几M的安装包，在没有Wi-Fi的情况下推广困难;<br>- 消息推送：小程序：仅能回复模版消息，不允许主动给用户发送广告，良好的产品体验;   App：频繁无用广告推送，骚扰用户造成没必要的困扰;<br><br>### 小程序与H5 webapp之间的区别:<br><br>- 运行环境：小程序的运行环境并非完整的浏览器，微信开发团队基于浏览器内核完全重构的一个内置解析器，针对小程序专门做了优化，配合自己定义的开发语言标准，提升了小程序的性能;   H5 webapp：传统的H5的运行环境是浏览器，包括webview。<br>- 开发成本：小程序开发由微信团队提供了开发者工具，并且规范了开发标准，微信自定义的WXML、WXSS，WXML标签，作为一个开发者，只用专注写程序：当需要实现功能时，直接调用API就好;   H5 webapp：从环境配置到前端框架(Angular、react、vue等)、模块管理工具(Webpack 、Browserify 等)、任务管理工具(Grunt、Gulp等)、浏览器兼容性等都需要开发人员掌握这些技能，开发成本较高。<br>- 获取系统级权限：小程序能获得更多的系统权限，比如网络通信状态、数据缓存能力等，这些系统级权限都可以和微信小程序无缝衔接;   H5 webapp：H5的大多应用场景被定位在业务逻辑简单、功能单一的原因，页面交互不够流畅。<br>- 产品角度：小程序它提供了丰富的框架组件和API接口供开发者调用，具体包含：界面、视图、内容、按钮、导航等。在这些组件和接口的帮助下，运行在微信上的小程序基本保持和Native APP一样的流畅度，极大的提高了用户的体验;   H5 webapp：微信底部会提供菜单作为功能引导入口，最终的结果还是引导用户到H5页面。<br><br>## 小程序如何开发？<br><br>### 开发工具安装<br><br>1、下载并安装微信开发者工具<br>   - <a href="https://mp.weixin.qq.com/" target="_blank" rel="external">注册登录微信公众平台</a><br>   - <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1455784140&amp;token=&amp;lang=zh_CN" target="_blank" rel="external">下载并安装微信开发者工具</a><br>   - <a href="https://mp.weixin.qq.com/wxopen/waregister?action=step1" target="_blank" rel="external">并注册微信小程序</a><br><br>2、添加微信小程序项目<br><br><center><img src="/images/111.png" width="300"></center>
+
+<center><img src="/images/config.png" width="300"></center>
+
+<h3 id="小程序结构概览"><a href="#小程序结构概览" class="headerlink" title="小程序结构概览"></a>小程序结构概览</h3><p>1、小程序项目结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">│---&gt;pages/ ---------------------- # 页面目录    </div><div class="line">│     │  </div><div class="line">│     │---&gt;index/----------------- # index页面 </div><div class="line">│     │     │</div><div class="line">│     │     │---&gt;index.js--------- # index页面逻辑    </div><div class="line">│     │     │---&gt;index.wxml------- # index页面结构 </div><div class="line">│     │     │---&gt;index.wxss------- # index页面样式</div><div class="line">│     │</div><div class="line">│     │---&gt;logs/------------------ # logs页面 </div><div class="line">│     │     │</div><div class="line">│     │     │---&gt;logs.js---------- # logs页面逻辑    </div><div class="line">│     │     │---&gt;logs.wxml-------- # logs页面结构 </div><div class="line">│     │     │---&gt;logs.wxss-------- # logs页面样式  </div><div class="line">│</div><div class="line">│---&gt;utils/----------------------- # 公共脚本目录</div><div class="line">│     │</div><div class="line">│     │---&gt;util.js---------------- # 工具脚本 </div><div class="line">│</div><div class="line">│---&gt;app.js ---------------------- # 应用程序逻辑</div><div class="line">│</div><div class="line">│---&gt;app.json -------------------- # 应用程序配置 </div><div class="line">│</div><div class="line">│---&gt;app.wxss -------------------- # 应用程序公共样式 </div><div class="line">│</div><div class="line">└─demo/ -------------------------  # 项目所在目录</div></pre></td></tr></table></figure>
+<p>2、应用层级文件</p>
+<ul>
+<li>app.js<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">//app.js</div><div class="line">App(&#123;</div><div class="line">  onLaunch: function () &#123;</div><div class="line">    //调用API从本地缓存中获取数据</div><div class="line">    var logs = wx.getStorageSync(&apos;logs&apos;) || []</div><div class="line">    logs.unshift(Date.now())</div><div class="line">    wx.setStorageSync(&apos;logs&apos;, logs)</div><div class="line">  &#125;,</div><div class="line">  getUserInfo:function(cb)&#123;</div><div class="line">    var that = this</div><div class="line">    if(this.globalData.userInfo)&#123;</div><div class="line">      typeof cb == &quot;function&quot; &amp;&amp; cb(this.globalData.userInfo)</div><div class="line">    &#125;else&#123;</div><div class="line">      //调用登录接口</div><div class="line">      wx.login(&#123;</div><div class="line">        success: function () &#123;</div><div class="line">          wx.getUserInfo(&#123;</div><div class="line">            success: function (res) &#123;</div><div class="line">              that.globalData.userInfo = res.userInfo</div><div class="line">              typeof cb == &quot;function&quot; &amp;&amp; cb(that.globalData.userInfo)</div><div class="line">            &#125;</div><div class="line">          &#125;)</div><div class="line">        &#125;</div><div class="line">      &#125;)</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  globalData:&#123;</div><div class="line">    userInfo:null</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>app.js定义了全局的一些重要事件，比如程序启动时要做些什么，如何获取微信用户信息等等。App函数是一个全局函数，它的作用就是用来创建一个应用程序实例，每个应用程序都会有它的生命周期，因此一些重要的生命周期事件都会在这里定义。</p>
+<ul>
+<li>app.json<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;pages&quot;:[</div><div class="line">    &quot;pages/index/index&quot;,</div><div class="line">    &quot;pages/logs/logs&quot;</div><div class="line">  ],</div><div class="line">  &quot;window&quot;:&#123;</div><div class="line">    &quot;backgroundTextStyle&quot;:&quot;light&quot;,</div><div class="line">    &quot;navigationBarBackgroundColor&quot;: &quot;#fff&quot;,</div><div class="line">    &quot;navigationBarTitleText&quot;: &quot;Manulife WeChat Demo&quot;,</div><div class="line">    &quot;navigationBarTextStyle&quot;:&quot;black&quot;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>app.json定义了程序有哪些页面，以及窗口标题及相关样式等。</p>
+<ul>
+<li>app.wxss<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">/**app.wxss**/</div><div class="line">.container &#123;</div><div class="line">  height: 100%;</div><div class="line">  display: flex;</div><div class="line">  flex-direction: column;</div><div class="line">  align-items: center;</div><div class="line">  justify-content: space-between;</div><div class="line">  padding: 200rpx 0;</div><div class="line">  box-sizing: border-box;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>app.wxss定义了全局样式，可以把它理解为一些所有页面公用的css样式。</p>
+<p>3、小程序总体结构</p>
+<center><img src="/images/struct.png" width="300"></center>
+
+<h3 id="小程序demo–hello-world-amp-amp-调用API"><a href="#小程序demo–hello-world-amp-amp-调用API" class="headerlink" title="小程序demo–hello world &amp;&amp; 调用API"></a>小程序demo–hello world &amp;&amp; 调用API</h3><p><a href="https://mp.weixin.qq.com/debug/wxadoc/dev/component/" target="_blank" rel="external">https://mp.weixin.qq.com/debug/wxadoc/dev/component/</a><br><a href="https://mp.weixin.qq.com/debug/wxadoc/dev/api/" target="_blank" rel="external">https://mp.weixin.qq.com/debug/wxadoc/dev/api/</a></p>
+<center><img src="/images/hello.png" width="300"></center><br><center><img src="/images/api.png" width="500"></center>
+
+<h2 id="小程序的优缺点？"><a href="#小程序的优缺点？" class="headerlink" title="小程序的优缺点？"></a>小程序的优缺点？</h2><h3 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h3><p>1、适合快速场景化服务</p>
+<p>2、可以快速验证客户需求</p>
+<p>3、适合初创团队</p>
+<p>4、试错成本低，需要较少时间和资金投入</p>
+<p>5、可以迅速占领空白领域客户渠道</p>
+<h3 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h3><p>1、小程序不能订阅收藏、不能分享朋友圈，只能通过好友分享转发和推荐等社交方式发现新的小程序，用完退出后下次再用找起来比较费劲。</p>
+<p>２、小程序平台封闭性过高，大量原生系统服务无法使用。</p>
+<p>３、不兼容某些WEB标准协议，不能跨浏览器使用。</p>
+<p>４、不支持nmp，npm架构正是React Native所使用的。</p>
+<p>５、组件单一，很多场景虽然可以使用，但功能仍旧单一。</p>
+<h2 id="实践–demo"><a href="#实践–demo" class="headerlink" title="实践–demo"></a>实践–demo</h2><h3 id="计算器"><a href="#计算器" class="headerlink" title="计算器"></a>计算器</h3><center><img src="/images/cal.png" width="400"></center>
+
+<h3 id="豆瓣电影"><a href="#豆瓣电影" class="headerlink" title="豆瓣电影"></a>豆瓣电影</h3><p>这个项目是看的一个公开课的讲师汪磊写的一个demo，拿来学习调用接口发请求的小项目，主要实现调用服务加载数据功能。</p>
+<p><a href="https://github.com/zce/weapp-demo" target="_blank" rel="external">项目地址</a></p>
+<p>后续会跟着汪磊的demo一步一步得把那个豆瓣项目写出来。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>经过一个多星期的调研，可以用小程序做一个简单版的产品及功能性实验，由于小程序的开发成本、发布上线时间相对比较低。但小程序毕竟是微信端上的，如果想做出属于自己公司的产品还是需要独自做APP，拥有自己的产品线。<br>微信小程序自带的组件和API，在开发阶段不用考虑浏览器兼容性问题，运行环境下不会带来不可预估的Bug,因此在开发成本上小程序比以往的Web开发成本低很多。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://segmentfault.com/a/1190000006986886" target="_blank" rel="external">微信小程序资源汇总整理</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+            <a href="/tags/小程序/" rel="tag"># 小程序</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/03/浅拷贝和深拷贝/" rel="prev" title="浅谈JS中的浅拷贝和深拷贝">
+                浅谈JS中的浅拷贝和深拷贝 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="AliceMaYaYa" />
+          <p class="site-author-name" itemprop="name">AliceMaYaYa</p>
+           
+              <p class="site-description motion-element" itemprop="description">多学，多看，多写，多听，多分享</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#小程序结构概览"><span class="nav-number">1.</span> <span class="nav-text">小程序结构概览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小程序demo–hello-world-amp-amp-调用API"><span class="nav-number">2.</span> <span class="nav-text">小程序demo–hello world && 调用API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小程序的优缺点？"><span class="nav-number"></span> <span class="nav-text">小程序的优缺点？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优点："><span class="nav-number">1.</span> <span class="nav-text">优点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点："><span class="nav-number">2.</span> <span class="nav-text">缺点：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实践–demo"><span class="nav-number"></span> <span class="nav-text">实践–demo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算器"><span class="nav-number">1.</span> <span class="nav-text">计算器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#豆瓣电影"><span class="nav-number">2.</span> <span class="nav-text">豆瓣电影</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number"></span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number"></span> <span class="nav-text">参考资料</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AliceMaYaYa</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
